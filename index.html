@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#123b66" />
+  <title>CVR Lost & Found | Student Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="loginScreen" class="login-wrap">
+    <div class="login-art">
+      <div class="brand brand-light"><span class="brand-mark">C</span><span>CVR <b>LOST & FOUND</b></span></div>
+      <div class="art-copy"><span class="eyebrow">ONE CAMPUS. ONE COMMUNITY.</span><h1>Lost something?<br><em>Let's find it.</em></h1><p>A student-friendly place to report lost items and help things find their way home.</p></div>
+      <div class="art-bottom"><span>✦ Made for the CVR student community</span><span>01 / STUDENT PORTAL</span></div>
+      <div class="orb orb-one"></div><div class="orb orb-two"></div>
+    </div>
+    <div class="login-panel">
+      <div class="login-box">
+        <div class="mobile-brand brand"><span class="brand-mark">C</span><span>CVR <b>LOST & FOUND</b></span></div>
+        <span class="eyebrow blue">WELCOME TO YOUR CAMPUS HUB</span>
+        <h2 id="authHeading">Welcome back</h2><p class="muted" id="authSub">Sign in to explore campus lost-and-found reports.</p>
+        <form id="authForm">
+          <label for="studentName" id="nameLabel" class="hidden">Your name</label><input id="studentName" class="hidden" placeholder="Full name" autocomplete="name" />
+          <label for="email">College email</label><input id="email" type="email" placeholder="you@college.edu" autocomplete="email" required />
+          <label for="password">Password</label><div class="password-wrap"><input id="password" type="password" placeholder="Enter any password for demo" autocomplete="current-password" required minlength="4" /><button type="button" class="show-pass" id="showPass">Show</button></div>
+          <p class="form-note">Frontend demo only — no password is sent or saved to a server.</p>
+          <button class="btn btn-primary full" type="submit" id="authSubmit">Sign in <span>→</span></button>
+        </form>
+        <p class="switch-auth" id="switchText">New to the portal? <button id="switchAuth" type="button">Create an account</button></p>
+        <button type="button" class="admin-entry" id="adminEntry">⚙ Open Admin Portal <span>→</span></button>
+        <div class="demo-note"><span>ⓘ</span><p><b>Demo mode</b><br>Use any valid-looking email and a password of 4+ characters to enter. This is not real college-email verification.</p></div>
+      </div>
+      <div class="login-footer">© CVR Lost & Found <span>Frontend prototype</span></div>
+    </div>
+  </div>
+
+  <div id="appScreen" class="app hidden">
+    <aside class="sidebar">
+      <a class="brand sidebar-brand" href="#"><span class="brand-mark">C</span><span>CVR <b>LOST & FOUND</b></span></a>
+      <div class="side-caption">CAMPUS SPACE</div>
+      <button class="nav-item active" data-view="discover"><span>⌕</span> Discover items</button>
+      <button class="nav-item" data-view="myreports"><span>▤</span> My reports <i id="myCount">0</i></button>
+      <button class="nav-item" data-view="report"><span>＋</span> Report an item</button>
+      <div class="sidebar-bottom"><div class="help-card"><span class="help-icon">✦</span><b>Small things matter.</b><p>Every report brings something one step closer to home.</p></div><div class="profile-mini"><div class="avatar" id="userAvatar">S</div><div class="profile-text"><b id="userNameSide">Student</b><span>CVR student · Demo</span></div><button id="logoutBtn" title="Log out" aria-label="Log out">↪</button></div></div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar"><div><span class="breadcrumb">STUDENT PORTAL <span>/</span> <b id="crumb">DISCOVER</b></span><h1 id="pageTitle">Find what you're looking for.</h1></div><button class="btn btn-primary top-report" data-open-report>＋ <span>Report an item</span></button></header>
+      <section class="welcome-strip"><div><span class="eyebrow">CAMPUS COMMUNITY BOARD</span><h2>Lost it. Found it. <em>Share it.</em></h2><p>Browse reports from fellow students and help reunite people with their belongings.</p></div><div class="strip-illustration"><div class="sun"></div><div class="illustration-card card-a">🔑</div><div class="illustration-card card-b">🎧</div><div class="illustration-card card-c">📚</div><div class="plant">♧</div></div></section>
+      <section class="stats-row"><div class="stat"><span class="stat-icon purple">⌕</span><div><b id="totalStat">6</b><span>Community reports</span></div></div><div class="stat"><span class="stat-icon orange">!</span><div><b id="lostStat">3</b><span>Still lost</span></div></div><div class="stat"><span class="stat-icon green">✓</span><div><b id="foundStat">3</b><span>Found items</span></div></div></section>
+      <section id="discoverView" class="content-view">
+        <div class="section-head"><div><h2>Community board</h2><p class="muted">See what's been lost or found around campus.</p></div><div class="filters"><div class="searchbox"><span>⌕</span><input id="searchInput" placeholder="Search items, places..." /></div><select id="categoryFilter" aria-label="Filter category"><option value="all">All categories</option><option>Electronics</option><option>Books & notes</option><option>Accessories</option><option>Cards & IDs</option><option>Other</option></select></div></div>
+        <div class="filter-tabs"><button class="tab active" data-filter="all">All items <span id="allCount">6</span></button><button class="tab" data-filter="lost">Lost <span id="lostCount">3</span></button><button class="tab" data-filter="found">Found <span id="foundCount">3</span></button></div>
+        <div id="itemGrid" class="item-grid"></div><div id="emptyState" class="empty-state hidden"><div>⌕</div><h3>No items found</h3><p>Try a different search, or create a new report.</p><button class="btn btn-primary" data-open-report>＋ Report an item</button></div>
+      </section>
+      <section id="myreportsView" class="content-view hidden"><div class="section-head"><div><h2>Your reports</h2><p class="muted">Reports you created during this demo session.</p></div><button class="btn btn-primary" data-open-report>＋ New report</button></div><div id="myReportsGrid" class="item-grid"></div><div id="myEmpty" class="empty-state"><div>▤</div><h3>No reports yet</h3><p>When you report a lost or found item, it will appear here.</p><button class="btn btn-primary" data-open-report>＋ Create a report</button></div></section>
+      <section id="reportView" class="content-view hidden"><div class="report-layout"><div class="report-intro"><span class="eyebrow blue">HELP THE COMMUNITY</span><h2>Let's get it<br><em>back where it belongs.</em></h2><p>Share a few details about the item. Please don't include sensitive personal information in the description.</p><div class="report-tip"><span>✦</span><p><b>Quick tip</b><br>Include the place and approximate time to make your report more helpful.</p></div></div><form id="reportForm" class="report-form"><div class="form-heading"><span class="form-number">01</span><div><h3>Item details</h3><p>Fields marked * are required.</p></div></div><div class="type-choice"><label class="choice"><input type="radio" name="reportType" value="lost" checked><span class="choice-inner"><b>⌕</b><strong>I lost something</strong><small>Help me find my item</small></span></label><label class="choice"><input type="radio" name="reportType" value="found"><span class="choice-inner"><b>✓</b><strong>I found something</strong><small>Help me find its owner</small></span></label></div>
+        <label for="itemName">Item name *</label><input id="itemName" required maxlength="70" placeholder="e.g. Black wireless headphones" />
+        <div class="two-col"><div><label for="itemCategory">Category *</label><select id="itemCategory" required><option value="">Choose category</option><option>Electronics</option><option>Books & notes</option><option>Accessories</option><option>Cards & IDs</option><option>Other</option></select></div><div><label for="itemDate">Date *</label><input id="itemDate" type="date" required /></div></div>
+        <label for="itemLocation">Location on campus *</label><input id="itemLocation" required maxlength="100" placeholder="e.g. Library, first floor" />
+        <label for="itemDescription">Description *</label><textarea id="itemDescription" required maxlength="500" rows="3" placeholder="Colour, brand, distinguishing details... "></textarea>
+        <label>Photo <span class="optional">OPTIONAL · PREVIEW ONLY</span></label><label for="itemPhoto" class="upload-zone" id="uploadZone"><input id="itemPhoto" type="file" accept="image/png,image/jpeg,image/webp" /><span class="upload-symbol">↑</span><b>Choose a photo from your device</b><small>JPG, PNG or WebP · Preview stays in this browser tab only</small><div id="photoPreview" class="photo-preview hidden"></div></label>
+        <label for="contactInfo">Contact detail *</label><input id="contactInfo" required maxlength="100" placeholder="College email or a safe way to contact you" />
+        <div class="privacy-note">🔒 <span>Demo privacy: reports stay in this browser only. Selected photos are previewed locally and are never uploaded or saved.</span></div>
+        <button class="btn btn-primary full" type="submit">Publish demo report <span>→</span></button><button class="cancel-link" type="button" id="cancelReport">Cancel and go back</button>
+      </form></div></section>
+      <footer class="main-footer"><span>CVR LOST & FOUND <span class="dot">•</span> STUDENT COMMUNITY</span><span>Frontend demo · No backend connected</span></footer>
+    </main>
+  </div>
+  <div id="adminScreen" class="admin-screen hidden">
+    <header class="admin-topbar"><a class="brand" href="#"><span class="brand-mark">C</span><span>CVR <b>LOST & FOUND</b></span></a><div class="admin-top-actions"><span class="admin-badge">⚙ ADMIN DEMO</span><button class="btn btn-primary" id="adminLogout">Exit admin</button></div></header>
+    <main class="admin-main">
+      <div class="admin-heading"><div><span class="eyebrow blue">CAMPUS MODERATION</span><h1>Admin portal</h1><p>Review lost-and-found reports submitted in this browser demo.</p></div><div class="admin-demo-warning">Demo only · changes are temporary</div></div>
+      <section class="admin-stats"><div class="admin-stat"><span>Total reports</span><b id="adminTotal">0</b></div><div class="admin-stat"><span>Lost items</span><b id="adminLost">0</b></div><div class="admin-stat"><span>Found items</span><b id="adminFound">0</b></div><div class="admin-stat"><span>Resolved</span><b id="adminResolved">0</b></div></section>
+      <section class="admin-list-panel"><div class="admin-list-head"><div><h2>Manage reports</h2><p>Verify a report, mark it resolved, or remove it from the demo.</p></div><input id="adminSearch" placeholder="Search reports..." aria-label="Search reports" /></div><div id="adminReports" class="admin-report-list"></div><div id="adminEmpty" class="empty-state hidden"><h3>No matching reports</h3><p>Try another search.</p></div></section>
+      <p class="admin-footnote">⚠ This is a frontend-only admin demonstration. It does not provide real authentication or affect other users' browsers.</p>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
